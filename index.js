@@ -1,13 +1,15 @@
 require('dotenv').config(); //loads env variables into process.env
 
 const express = require('express');
-const connectDB = require('./dbConfig')
+// const connectMongoDB = require('./mongoDbConfig');
 // const rateLimit = require('express-rate-limit');
 // const mongoSanitize = require('express-mongo-sanitize');
+const {connectCloudinary, pool} = require('./db/dbConfig');
 
 const app = express();
 
-connectDB();
+// connectMongoDB();
+connectCloudinary();
 
 /* const limiter = rateLimit({
     windowMs: 15*60*1000, //15 mins
