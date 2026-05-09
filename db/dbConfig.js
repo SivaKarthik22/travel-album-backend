@@ -1,15 +1,5 @@
-const cloudinary = require('cloudinary').v2;
 const { Pool } = require("pg");
 require("dotenv").config();
-
-function connectCloudinary() {
-    cloudinary.config({
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_API_SECRET,
-        secure: true // Return "https" URLs by setting secure: true
-    });
-}
 
 const pool = new Pool({
   host: process.env.PG_HOST,
@@ -20,7 +10,7 @@ const pool = new Pool({
   ssl: process.env.PG_SSL,
 });
 
-module.exports = {pool, connectCloudinary};
+module.exports = { pool };
 
 //pool usage:
 /* async function getPgVersion() {
