@@ -1,3 +1,5 @@
+const { buildNestedObj } = require('../utilities/utils');
+
 const cloudinary = require('cloudinary').v2;
 
 const getAssetsInFolder = async (req, res) => {
@@ -10,11 +12,12 @@ const getAssetsInFolder = async (req, res) => {
             });
         }
 
+        const nestedParamsObj = buildNestedObj(req.query);
         const {
             limit = 100,
             cursor,
             urlOptions
-        } = req.query;
+        } = nestedParamsObj;
         
         const cloudinaryOptions = {
             max_results: Number(limit),  // pagination size
